@@ -1,0 +1,8 @@
+@EndUserText.label: 'Service Definition Trip Plan'
+define service Y27D_SD_TRIP_PLAN {
+  expose Y27D_C_TRIP_PLAN as Main_Entity;
+  expose Y27D_C_TRIP_PAX  as trip_pax;
+  expose Y27D_C_TRIP_ACT  as trip_Act;
+  expose Y27D_C_TRIP_DOCX as trip_Docx;
+  expose ZCDS_VALUE_DROP  as CurrencyValue;
+}

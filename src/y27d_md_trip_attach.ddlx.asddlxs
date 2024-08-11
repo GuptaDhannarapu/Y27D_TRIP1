@@ -1,0 +1,42 @@
+@Metadata.layer: #CORE
+annotate entity Y27D_C_TRIP_ATTACH
+    with 
+{
+  @UI.facet: [
+
+  { type: #IDENTIFICATION_REFERENCE, position: 1, id: 'soAttach',label:'Attachments' }
+  ]
+  @UI.hidden: true
+  @UI:{ lineItem: [{  position: 10, label: 'Batch Id', importance: #HIGH }],
+  identification: [{ position: 10, label: 'Batch Id' }] }
+  Batchid;
+  
+  @UI.hidden: true
+//  @UI:{ lineItem: [{  position: 20, label: 'Count', importance: #HIGH }],
+//  @UI: { identification: [{ position: 20, label: 'Count' }] 
+//  }
+  Counter;
+
+  @UI:{ lineItem: [{  position: 30, label: 'Attach ID', importance: #HIGH }],
+  identification: [{ position: 30, label: 'Attach ID' }] }
+  AttchId;
+
+  @UI:{ lineItem: [{  position: 40, label: 'Document', importance: #HIGH }],
+  identification: [{ position: 40, label: 'Document' }] }
+  Attachment;
+
+  @UI:{ lineItem: [{  position: 50, label: 'Comments', importance: #HIGH }],
+  identification: [{ position: 50, label: 'Comments' }]  }
+  Comments;
+
+//  @UI:{ lineItem: [{  position: 60, label: 'Filename', importance: #HIGH } ],
+//  identification: [{ position:60, label: 'Filename' }] }
+//  Filename;
+  
+  @UI.hidden: true
+  MimeType;
+
+//  @UI.hidden: true
+//  Filename;
+    
+}

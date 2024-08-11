@@ -1,0 +1,23 @@
+@Metadata.layer: #CORE
+@UI:{
+        headerInfo:{
+
+        typeName: 'TripPlan',
+        typeNamePlural: 'Trip Plans',
+        title: { value: 'SingletonID' }
+     } }
+annotate entity Y27D_C_TRIP_SINGLE1
+    with 
+{
+@UI.facet: [{ purpose: #STANDARD,
+              type: #LINEITEM_REFERENCE,
+              position: 10,
+              label:'Trips',
+              targetElement: '_TripPlan' }]
+    @UI.lineItem: [{ position: 10, label: 'SingleTon' }]
+    SingletonID;
+    @UI.hidden: true
+    LastChangedAt;
+    /* Associations */
+//    _TripPlan;
+}

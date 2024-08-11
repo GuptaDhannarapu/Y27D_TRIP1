@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition'
+define service Y27D_SD_TRIP_ATTACH {
+  expose Y27D_C_TRIP_ATTACH as tripAttach;
+}

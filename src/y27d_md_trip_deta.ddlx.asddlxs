@@ -1,0 +1,135 @@
+@Metadata.layer: #CORE
+
+@UI.lineItem: [{criticality: 'Status_msg'}]
+@UI:{
+        headerInfo:{
+
+        typeName: 'Trip Plan',
+        typeNamePlural: 'Trip Plans',
+        title: { value: 'Batch_Id' }
+//        description: { value: 'Place' }
+     } }
+
+//@UI.chart: [{
+//   qualifier: 'ChartDefault',
+//   chartType: #COLUMN,
+//   dimensions: ['_paxDet.Counter'],
+//   measures: ['_paxDet.IndExp'],
+//   dimensionAttributes: [{
+//       dimension: '_paxDet.Counter',
+//       role: #SERIES
+//    },{
+//       dimension: '_paxDet.IndExp',
+//       role: #CATEGORY
+//    }],
+//   measureAttributes: [{
+//       measure: '_paxDet.IndExp',
+//       role: #AXIS_1
+//    }]
+// }]
+// @UI.presentationVariant: [{
+//    qualifier: 'Default',
+//    visualizations: [{
+//        type: #AS_CHART,
+//        qualifier: 'ChartDefault'
+//    }]
+// }]
+annotate entity Y27D_C_TRIP_PLAN with
+{
+
+  @UI.facet: [{ id: 'Trip',
+                purpose: #STANDARD,
+                type: #IDENTIFICATION_REFERENCE,
+                label: 'Plan Details',
+                position: 1 },
+
+              { id: 'Trip_pax',
+                purpose: #STANDARD,
+                type: #LINEITEM_REFERENCE,
+                label: 'Pax Details',
+                position: 2,
+                targetElement: '_paxDet' },
+
+               { id: 'Trip_Act',
+                purpose: #STANDARD,
+                type: #LINEITEM_REFERENCE,
+                label: 'Activities',
+                position: 3,
+                targetElement: '_plaAct' },
+
+                  { id: 'Trip_Ana',
+                  purpose: #STANDARD,
+                  type: #CHART_REFERENCE,
+                  label: 'Analytics',
+                  position: 4,
+                  targetElement: '_paxDet',
+//                                            },
+                  targetQualifier: 'PrjVsTs' },
+
+                { id:'idHFPlace',
+                     purpose: #HEADER,
+                     type: #DATAPOINT_REFERENCE,
+                     targetQualifier: 'Place' }
+
+  //                { id:'idHFStatu',
+  //                      purpose: #HEADER,
+  //                      type: #DATAPOINT_REFERENCE,
+  //                      targetQualifier: 'Status_msg' }
+                ]
+  @UI: { lineItem: [{ position: 10, label: 'Batch Number' }],
+  //         identification: [{ position: 10, label: 'Batch No' }],
+         selectionField: [{ position: 10 }]}
+         @Search.fuzzinessThreshold: 0.8
+  Batch_Id;
+
+  @UI: { lineItem: [{ position: 20, label: 'Place' }],
+           identification: [{ position: 20, label: 'Place' }] }
+  @UI.dataPoint:{ title: 'Place' }
+  Place;
+
+  @UI: { lineItem: [{ position: 30, label: 'From date' }],
+       identification: [{ position: 30, label: 'From date' }] }
+  From_date;
+
+  @UI: { lineItem: [{ position: 40, label: 'To date' }],
+       identification: [{ position: 40, label: 'To date' }] }
+  To_date;
+
+  @UI: { lineItem: [{ position: 50, label: 'Expenditures' }],
+       identification: [{ position: 50, label: 'Expenditures' }] }
+  Expend;
+
+  @UI: { lineItem: [{ position: 60, label: 'Currency' }],
+       identification: [{ position: 60, label: 'Currency' }] }
+  @Consumption.valueHelpDefinition: [{ entity:{ name: 'I_Currency', element: 'Currency' } }]
+  Currency;
+
+  @UI: { lineItem: [{ position: 70, label: 'Total persons' }],
+       identification: [{ position: 70, label: 'Total persons' }] }
+  Total_per;
+
+  @UI:{ lineItem: [{  position: 80, label: 'Comments', importance: #HIGH },
+                { type:#FOR_ACTION, dataAction: 'YetToConfirm',label: 'Yet to Confirm' },
+                { type:#FOR_ACTION, dataAction: 'Confirmed',label: 'Confirm' },
+                { criticality: 'Status_msg' }
+
+  ]
+  //  identification: [{ position: 40, label: 'Block Status' } ]
+  ////   fieldGroup: [{ qualifier: 'DetailInfo',label: 'Block Status',importance: #HIGH}]
+  }
+  //  @UI.dataPoint:{ title: 'Status', criticality: 'Comments' }
+  Comments;
+  
+  @UI: { lineItem: [{ position: 90, label: 'Created By' }],
+       identification: [{ position: 90, label: 'Created By' }] }
+  Created_by;
+
+  @UI.hidden: true
+  //   @UI.dataPoint:{ title: 'Status', criticality: 'Status_msg' }
+  Status_msg;
+
+  @UI.hidden: true
+  Status;
+
+
+}

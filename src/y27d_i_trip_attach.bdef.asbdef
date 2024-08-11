@@ -1,0 +1,24 @@
+managed implementation in class zbp_27d_i_trip_attach unique;
+strict ( 2 );
+with draft;
+
+define behavior for Y27D_I_TRIP_ATTACH //alias <alias_name>
+persistent table y27d_t_attach
+draft table y27d_draft_attc
+lock master
+total etag Batchid
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) Batchid, Counter, AttchId;
+   draft action Edit;
+  draft action Activate;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+//  mapping for Y27D_C_TRIP_ATTACH w
+}

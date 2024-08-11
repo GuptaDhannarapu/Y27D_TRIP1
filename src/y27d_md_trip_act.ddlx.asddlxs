@@ -1,0 +1,55 @@
+@Metadata.layer: #CORE
+@UI:{
+        headerInfo:{
+
+        typeName: 'Trip Activity',
+        typeNamePlural: 'Trip Activities',
+        title: { value: 'Place' },
+        description: { value: 'Activity' }
+     } }
+annotate entity Y27D_C_TRIP_ACT
+    with 
+{
+@UI.facet: [
+{ type: #IDENTIFICATION_REFERENCE, position: 3, id: 'PlaAct',label:'Activities' }
+]
+  @UI.hidden: true
+  Batchid;
+  
+//  @UI.hidden: true
+  @UI:{ lineItem: [{  position: 20, label: 'Count', importance: #HIGH }],
+  identification: [{ position: 20, label: 'Count' }] }
+  
+  
+  Counter;
+  
+   @UI:{ lineItem: [{  position: 21, label: 'Activity', importance: #HIGH } ],
+//   { type:#FOR_ACTION, dataAction: 'YetToConfirm',label: 'Yet to Confirm' } ],
+   
+  identification: [{ position: 21, label: 'Activity' }] }
+  Activity;
+//  
+  @UI:{ lineItem: [{  position: 30, label: 'Place', importance: #HIGH }],
+  identification: [{ position: 30, label: 'Place' }] }
+  Place;
+// 
+
+  @UI:{ lineItem: [{  position: 40, label: 'Expenditure', importance: #HIGH }],
+  identification: [{ position: 40, label: 'Expenditure' }] }
+  Expend;
+
+//  @UI:{ lineItem: [{  position: 40, label: 'Id Number', importance: #HIGH }],
+//  identification: [{ position: 40, label: 'Id Number' }] }
+//  Currency;
+  
+
+//  @UI:{ lineItem: [{  position: 50, label: 'Expenditures', importance: #HIGH }],
+//  identification: [{ position: 50, label: 'Expenditures' }] }
+//  indexp;
+
+  @UI:{ lineItem: [{  position: 50, label: 'Currency', importance: #HIGH }],
+  identification: [{ position: 50, label: 'Currency' }] }
+  @Consumption.valueHelpDefinition: [{ entity:{ name: 'I_Currency', element: 'Currency' } }]
+  Currency;
+    
+}

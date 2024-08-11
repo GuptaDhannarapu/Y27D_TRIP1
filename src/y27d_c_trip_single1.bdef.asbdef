@@ -1,0 +1,23 @@
+projection;
+strict ( 2 );
+use draft;
+
+define behavior for Y27D_C_TRIP_SINGLE1 //alias <alias_name>
+{
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+
+  use association _TripPlan { create; }
+}
+
+define behavior for Y27D_C_TRIP_TMG_1 //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _Singleton;
+}

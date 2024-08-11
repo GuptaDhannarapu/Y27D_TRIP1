@@ -1,0 +1,5 @@
+@EndUserText.label: 'Singleton Service Definition'
+define service Y27D_SD_TRIP_SINGLET {
+  expose Y27D_C_TRIP_SINGLE1;
+  expose Y27D_C_TRIP_TMG_1;
+}

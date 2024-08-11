@@ -1,0 +1,52 @@
+managed implementation in class zbp_27d_i_trip_single1 unique;
+strict ( 2 );
+with draft;
+define behavior for Y27D_I_TRIP_SINGLE1 //alias <alias_name>
+with unmanaged save
+draft table y27d_dummy_draft
+//persistent table <???>
+lock master
+total etag LastChangedAt
+authorization master ( instance )
+etag master LastChangedAt
+{
+  //    create;
+  //    update;
+  //    delete;
+  draft action Edit;
+  draft action Activate;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  field ( readonly ) SingletonID;
+  association _TripPlan { create; with draft; }
+}
+
+define behavior for Y27D_I_TRIP_TMG_1 //alias <alias_name>
+persistent table y27d_t_plan_det
+//early numbering
+draft table y27d_draft_table
+lock dependent by _Singleton
+authorization dependent by _Singleton
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly )  SingletonID;
+  association _Singleton;
+
+  mapping for y27d_t_plan_det
+    {
+      Batchid        = BATCHID;
+      Place          = PLACE;
+      Frdate         = FRDATE;
+      Todate         = TODATE;
+      Expend         = EXPEND;
+      Currency       = CURRENCY;
+      Totalpax       = TOTALPAX;
+      Status         = STATUS;
+      LocalCreatedBy = LOCAL_CREATED_BY;
+      LastChangedAt  = LAST_CHANGED_AT;
+    }
+}

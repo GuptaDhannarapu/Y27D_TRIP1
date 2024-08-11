@@ -1,0 +1,103 @@
+managed implementation in class zbp_27d_i_trip_plan unique;
+strict ( 2 );
+with draft;
+define behavior for Y27D_I_TRIP_PLAN alias plan_details
+with unmanaged save
+draft table y27d_draft_trip
+//persistent table y27d_t_plan_det
+lock master
+total etag From_date
+authorization master ( instance )
+early numbering
+//etag master From_date
+{
+  create;
+  update ( features : instance );
+  delete ( features : instance );
+  draft action Edit;
+  draft action Activate;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+  association _paxDet { create ( features : instance ); }
+  association _plaAct { create ( features : instance ); }
+  field ( readonly ) Batch_Id, Total_per, Created_by;
+  validation validate_to_date on save { create; field To_date; update;}
+  //  field( numbering : managed ) Batch_Id;
+  action ( features : instance ) Confirmed result [1] $self;
+  action ( features : instance ) YetToConfirm result [1] $self;
+  mapping for y27d_t_plan_det control y27d_c_trip_plan corresponding
+    {
+      Batch_Id  = batchid;
+      //      Currency = currency;
+      //      Expend = expend;
+      From_date = frdate;
+      //      Place = place;
+      Status    = status;
+      To_date   = todate;
+      Total_per = totalpax;
+    }
+}
+
+define behavior for Y27D_I_TRIP_PAX alias paxDet
+with unmanaged save
+lock dependent by _planDet
+draft table y27d_draft_pax
+//early numbering
+//late numbering
+//persistent table y27d_t_plan_det
+//total etag From_date
+authorization dependent by _planDet
+//etag master From_date
+{
+//    create;
+  update ( features : instance );
+  delete ( features : instance );
+  association _planDoc { create ( features : instance ); with draft; }
+  association _planDet{ with draft ; }
+  field ( readonly ) Batchid, Counter;
+
+  determination determineTotalPax on modify { field Counter; }
+  //  determination determineTotalPax on save  { field Counter; }
+  //  determination determineTotalPax on save  { field Counter; }
+
+
+}
+
+define behavior for Y27D_I_TRIP_ACT alias plaAct
+with unmanaged save
+lock dependent by _planDet
+draft table y27d_draft_act
+early numbering
+//persistent table y27d_t_plan_det
+//total etag From_date
+authorization dependent by _planDet
+//etag master From_date
+{
+  //  create;
+  update ( features : instance );
+  delete ( features : instance );
+  association _planDet { with draft; }
+  field ( readonly ) Batchid, Counter;
+  //  action ( features : instance ) YetToConfirm result [1] $self;
+//  side effects{ field Expend affects field paxDet. }
+  determination determineTotalExp on save  { field Expend; }
+  //  determination determineTotalPax on save  { field Counter; }
+
+}
+
+define behavior for Y27D_I_TRIP_DOCX alias plaDoc
+with unmanaged save
+draft table y27d_draft_docx
+lock dependent by _plaMain
+authorization dependent by _plaMain
+//etag master From_date
+{
+  //  create;
+  update ( features : instance );
+  delete ( features : instance );
+  association _PlaPax { with draft; }
+  association _plaMain { with draft; }
+  field ( readonly ) Batchid, Counter, AttchId;
+
+}

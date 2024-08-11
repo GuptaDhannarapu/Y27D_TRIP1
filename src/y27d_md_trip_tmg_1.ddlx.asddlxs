@@ -1,0 +1,51 @@
+@Metadata.layer: #CORE
+@UI:{
+        headerInfo:{
+        typeName: 'Trip Plan',
+        typeNamePlural: 'Trip Plans',
+        title: { label: 'Trip Plan',
+                  value: 'Batchid' }
+     } }
+annotate entity Y27D_C_TRIP_TMG_1 with
+{
+  @UI.facet: [{ purpose: #STANDARD,
+                type: #IDENTIFICATION_REFERENCE, label: 'Plan Details', position: 1 }]
+  @UI: { lineItem: [{ position: 10, label: 'Batch ID' }],
+           identification: [{ position: 10, label: 'Batch ID' }] }
+  Batchid;
+  @UI.hidden: true
+  SingletonID;
+  @UI: { lineItem: [{ position: 20, label: 'Place' }],
+           identification: [{ position: 20, label: 'Place' }] }
+  Place;
+  
+  @UI: { lineItem: [{ position: 30, label: 'From Date' }], 
+           identification: [{ position: 30, label: 'From Date' }] }
+  Frdate;
+  
+  @UI: { lineItem: [{ position: 40, label: 'To Date' }], 
+           identification: [{ position: 40, label: 'To Date' }] }
+  Todate;
+  
+  @UI: { lineItem: [{ position: 50, label: 'Expenditures' }], 
+           identification: [{ position: 50, label: 'Expenditures' }] }
+  Expend;
+  
+//   @UI: { lineItem: [{ position: 60, label: 'Currency' }], 
+//           identification: [{ position: 60, label: 'Currency' }] }
+//  Currency;
+  
+   @UI: { lineItem: [{ position: 70, label: 'Total Person' }], 
+           identification: [{ position: 70, label: 'Total Person' }] }
+  Totalpax;
+  
+   @UI: { lineItem: [{ position: 80, label: 'Status' }], 
+           identification: [{ position: 80, label: 'Status' }] }
+  Status;
+//  LocalCreatedBy;
+//  LastChangedAt;
+//  Configdeprecationcode;
+//  /* Associations */
+//  _Singleton;
+
+}

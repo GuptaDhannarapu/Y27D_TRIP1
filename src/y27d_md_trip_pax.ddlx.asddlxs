@@ -1,0 +1,72 @@
+@Metadata.layer: #CORE
+@UI:{
+        headerInfo:{
+
+        typeName: 'Trip Plan',
+        typeNamePlural: 'Trip Plan',
+        title: { value: 'IdType' },
+        description: { value: 'IdNum' }
+     } }
+//@UI.chart: [{
+//qualifier: 'PrjVsTs',
+//chartType: #COLUMN
+////dimensions: [ 'IdNum' ],
+////dimensionAttributes: [{ dimension: 'IdNum', role: #CATEGORY }],
+////measures: [ 'IndExp' ],
+////measureAttributes: [{ measure: 'IndExp',role: #AXIS_1 }] 
+//}]
+//
+ @UI.presentationVariant: [{
+    qualifier: 'PrjVsTs',
+    visualizations: [{
+        type: #AS_CHART,
+        qualifier: 'PrjVsTs'
+    }]
+ }]
+
+annotate entity Y27D_C_TRIP_PAX with
+{
+
+  @UI.facet: [
+  { type: #IDENTIFICATION_REFERENCE, position: 2, id: 'paxDet',label:'Pax Details' },
+
+   { id: 'Trip_Doc',
+                  purpose: #STANDARD,
+                  type: #LINEITEM_REFERENCE,
+                  label: 'Documents',
+                  position: 2,
+                  targetElement: '_planDoc' }
+  ]
+
+  @UI:{ lineItem: [{  position: 10, label: 'Count', importance: #HIGH }],
+  identification: [{ position: 10, label: 'Count' }] }
+  Counter;
+
+  @UI:{ lineItem: [{  position: 20, label: 'Name', importance: #HIGH }],
+  identification: [{ position: 20, label: 'Name' }]
+  }
+  //  fieldGroup: [{ qualifier: 'ItemDetail' ,position: 20, importance: #HIGH}] }
+  Firstname;
+
+
+  @UI:{ lineItem: [{  position: 30, label: 'Type of Id', importance: #HIGH }],
+    identification: [{ position: 30, label: 'Type of Id' }] }
+  IdType;
+  //
+  @UI:{ lineItem: [{  position: 40, label: 'Id Number', importance: #HIGH }],
+    identification: [{ position: 40, label: 'Id Number' }] }
+  IdNum;
+
+  @UI:{ lineItem: [{  position: 50, label: 'Expenditures', importance: #HIGH }],
+  identification: [{ position: 50, label: 'Expenditures' }] }
+  IndExp;
+
+  @UI:{ lineItem: [{  position: 60, label: 'Currency', importance: #HIGH }],
+  identification: [{ position: 60, label: 'Currency' }] }
+  @Consumption.valueHelpDefinition: [{ entity:{ name: 'ZCDS_VALUE_DROP', element: 'Currency' } }]
+  Currency;
+
+  /* Associations */
+  //    _planDet;
+
+}
