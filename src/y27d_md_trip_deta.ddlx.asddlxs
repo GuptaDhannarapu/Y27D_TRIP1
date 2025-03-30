@@ -7,33 +7,8 @@
         typeName: 'Trip Plan',
         typeNamePlural: 'Trip Plans',
         title: { value: 'Batch_Id' }
-//        description: { value: 'Place' }
      } }
 
-//@UI.chart: [{
-//   qualifier: 'ChartDefault',
-//   chartType: #COLUMN,
-//   dimensions: ['_paxDet.Counter'],
-//   measures: ['_paxDet.IndExp'],
-//   dimensionAttributes: [{
-//       dimension: '_paxDet.Counter',
-//       role: #SERIES
-//    },{
-//       dimension: '_paxDet.IndExp',
-//       role: #CATEGORY
-//    }],
-//   measureAttributes: [{
-//       measure: '_paxDet.IndExp',
-//       role: #AXIS_1
-//    }]
-// }]
-// @UI.presentationVariant: [{
-//    qualifier: 'Default',
-//    visualizations: [{
-//        type: #AS_CHART,
-//        qualifier: 'ChartDefault'
-//    }]
-// }]
 annotate entity Y27D_C_TRIP_PLAN with
 {
 
@@ -57,33 +32,30 @@ annotate entity Y27D_C_TRIP_PLAN with
                 position: 3,
                 targetElement: '_plaAct' },
 
-                  { id: 'Trip_Ana',
-                  purpose: #STANDARD,
-                  type: #CHART_REFERENCE,
-                  label: 'Analytics',
-                  position: 4,
-                  targetElement: '_paxDet',
-//                                            },
-                  targetQualifier: 'PrjVsTs' },
-
                 { id:'idHFPlace',
+                position: 10,
                      purpose: #HEADER,
                      type: #DATAPOINT_REFERENCE,
-                     targetQualifier: 'Place' }
+                     targetQualifier: 'Place'
+                      },
+                { id:'idHFComment',
+                  position: 20,
+                     purpose: #HEADER,
+                     type: #DATAPOINT_REFERENCE,
+                     targetQualifier: 'Comments'
+                      }
 
-  //                { id:'idHFStatu',
-  //                      purpose: #HEADER,
-  //                      type: #DATAPOINT_REFERENCE,
-  //                      targetQualifier: 'Status_msg' }
+
                 ]
   @UI: { lineItem: [{ position: 10, label: 'Batch Number' }],
-  //         identification: [{ position: 10, label: 'Batch No' }],
          selectionField: [{ position: 10 }]}
-         @Search.fuzzinessThreshold: 0.8
+  @Search.fuzzinessThreshold: 0.8
   Batch_Id;
 
-  @UI: { lineItem: [{ position: 20, label: 'Place' }],
-           identification: [{ position: 20, label: 'Place' }] }
+  @UI: {
+  lineItem: [{ position: 20, label: 'Place' }],
+               identification: [{ position: 20, label: 'Place' }]
+  }
   @UI.dataPoint:{ title: 'Place' }
   Place;
 
@@ -106,26 +78,25 @@ annotate entity Y27D_C_TRIP_PLAN with
 
   @UI: { lineItem: [{ position: 70, label: 'Total persons' }],
        identification: [{ position: 70, label: 'Total persons' }] }
-  Total_per;
+  TotalPax1;
 
   @UI:{ lineItem: [{  position: 80, label: 'Comments', importance: #HIGH },
                 { type:#FOR_ACTION, dataAction: 'YetToConfirm',label: 'Yet to Confirm' },
                 { type:#FOR_ACTION, dataAction: 'Confirmed',label: 'Confirm' },
-                { criticality: 'Status_msg' }
+                { criticality: 'Status_msg', criticalityRepresentation: #WITH_ICON  }
 
-  ]
-  //  identification: [{ position: 40, label: 'Block Status' } ]
-  ////   fieldGroup: [{ qualifier: 'DetailInfo',label: 'Block Status',importance: #HIGH}]
-  }
-  //  @UI.dataPoint:{ title: 'Status', criticality: 'Comments' }
+  ] }
+  @UI.dataPoint:{ title: 'Status', criticality: 'Status_msg',criticalityRepresentation: #WITH_ICON }
   Comments;
-  
+
   @UI: { lineItem: [{ position: 90, label: 'Created By' }],
        identification: [{ position: 90, label: 'Created By' }] }
   Created_by;
 
-  @UI.hidden: true
-  //   @UI.dataPoint:{ title: 'Status', criticality: 'Status_msg' }
+@UI.hidden: true
+@UI: { 
+       identification: [{ position: 90, label: 'Status' }] }
+  @UI.dataPoint:{ title: 'Status', criticality: 'Status_msg' }
   Status_msg;
 
   @UI.hidden: true

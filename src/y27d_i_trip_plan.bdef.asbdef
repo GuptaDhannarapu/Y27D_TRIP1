@@ -21,8 +21,8 @@ early numbering
   draft determine action Prepare;
   association _paxDet { create ( features : instance ); }
   association _plaAct { create ( features : instance ); }
-  field ( readonly ) Batch_Id, Total_per, Created_by;
-  validation validate_to_date on save { create; field To_date; update;}
+  field ( readonly ) Batch_Id, Total_per, Created_by, Expend;
+  validation validate_to_date on save { create; field To_date; update; }
   //  field( numbering : managed ) Batch_Id;
   action ( features : instance ) Confirmed result [1] $self;
   action ( features : instance ) YetToConfirm result [1] $self;
@@ -50,14 +50,16 @@ draft table y27d_draft_pax
 authorization dependent by _planDet
 //etag master From_date
 {
-//    create;
+  //    create;
   update ( features : instance );
   delete ( features : instance );
   association _planDoc { create ( features : instance ); with draft; }
-  association _planDet{ with draft ; }
+  association _planDet { with draft; }
   field ( readonly ) Batchid, Counter;
 
   determination determineTotalPax on modify { field Counter; }
+  determination expend on modify { field IndExp; }
+  side effects { field IndExp affects field _planDet.Expend; }
   //  determination determineTotalPax on save  { field Counter; }
   //  determination determineTotalPax on save  { field Counter; }
 
@@ -80,8 +82,8 @@ authorization dependent by _planDet
   association _planDet { with draft; }
   field ( readonly ) Batchid, Counter;
   //  action ( features : instance ) YetToConfirm result [1] $self;
-//  side effects{ field Expend affects field paxDet. }
-  determination determineTotalExp on save  { field Expend; }
+  //  side effects{ field Expend affects field paxDet. }
+  determination determineTotalExp on save { field Expend; }
   //  determination determineTotalPax on save  { field Counter; }
 
 }

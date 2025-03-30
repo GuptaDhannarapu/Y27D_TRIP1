@@ -1,5 +1,13 @@
-CLASS zbp_27d_i_trip_singleton DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF y27d_i_trip_singleton.
+class ZBP_27D_I_TRIP_SINGLETON definition
+  public
+  create private .
+
+public section.
+protected section.
+private section.
 ENDCLASS.
 
-CLASS zbp_27d_i_trip_singleton IMPLEMENTATION.
+
+
+CLASS ZBP_27D_I_TRIP_SINGLETON IMPLEMENTATION.
 ENDCLASS.

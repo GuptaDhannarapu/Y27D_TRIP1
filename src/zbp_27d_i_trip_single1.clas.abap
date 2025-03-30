@@ -1,5 +1,13 @@
-CLASS zbp_27d_i_trip_single1 DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF y27d_i_trip_single1.
+class ZBP_27D_I_TRIP_SINGLE1 definition
+  public
+  create private .
+
+public section.
+protected section.
+private section.
 ENDCLASS.
 
-CLASS zbp_27d_i_trip_single1 IMPLEMENTATION.
+
+
+CLASS ZBP_27D_I_TRIP_SINGLE1 IMPLEMENTATION.
 ENDCLASS.

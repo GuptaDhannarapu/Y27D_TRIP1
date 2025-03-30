@@ -7,15 +7,6 @@
         title: { value: 'IdType' },
         description: { value: 'IdNum' }
      } }
-//@UI.chart: [{
-//qualifier: 'PrjVsTs',
-//chartType: #COLUMN
-////dimensions: [ 'IdNum' ],
-////dimensionAttributes: [{ dimension: 'IdNum', role: #CATEGORY }],
-////measures: [ 'IndExp' ],
-////measureAttributes: [{ measure: 'IndExp',role: #AXIS_1 }] 
-//}]
-//
  @UI.presentationVariant: [{
     qualifier: 'PrjVsTs',
     visualizations: [{
@@ -28,7 +19,7 @@ annotate entity Y27D_C_TRIP_PAX with
 {
 
   @UI.facet: [
-  { type: #IDENTIFICATION_REFERENCE, position: 2, id: 'paxDet',label:'Pax Details' },
+  { type: #IDENTIFICATION_REFERENCE, position: 1, id: 'paxDet',label:'Pax Details' },
 
    { id: 'Trip_Doc',
                   purpose: #STANDARD,
