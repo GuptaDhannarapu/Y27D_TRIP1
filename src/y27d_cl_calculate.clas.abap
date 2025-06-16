@@ -11,7 +11,9 @@ ENDCLASS.
 
 
 
-CLASS y27d_cl_calculate IMPLEMENTATION.
+CLASS Y27D_CL_CALCULATE IMPLEMENTATION.
+
+
   METHOD if_sadl_exit_calc_element_read~calculate.
     DATA: lt_virtual_ele TYPE STANDARD TABLE OF y27d_c_trip_plan WITH DEFAULT KEY.
 
@@ -30,8 +32,8 @@ CLASS y27d_cl_calculate IMPLEMENTATION.
     ct_calculated_data = CORRESPONDING #( lt_virtual_ele ).
   ENDMETHOD.
 
+
   METHOD if_sadl_exit_calc_element_read~get_calculation_info.
 
   ENDMETHOD.
-
 ENDCLASS.

@@ -21,11 +21,13 @@ early numbering
   draft determine action Prepare;
   association _paxDet { create ( features : instance ); }
   association _plaAct { create ( features : instance ); }
-  field ( readonly ) Batch_Id, Total_per, Created_by, Expend;
+  field ( readonly ) Batch_Id, Total_per, Created_by, Expend, Send_txt;
+//  field( readonly : update ) Currency;
   validation validate_to_date on save { create; field To_date; update; }
   //  field( numbering : managed ) Batch_Id;
   action ( features : instance ) Confirmed result [1] $self;
   action ( features : instance ) YetToConfirm result [1] $self;
+  action ( features : instance ) SendMail result[1] $self;
   mapping for y27d_t_plan_det control y27d_c_trip_plan corresponding
     {
       Batch_Id  = batchid;

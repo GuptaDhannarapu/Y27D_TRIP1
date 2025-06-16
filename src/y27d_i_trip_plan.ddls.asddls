@@ -28,6 +28,8 @@ define root view entity Y27D_I_TRIP_PLAN
           when 'X' then 'Confirmed'
           else 'Pending'
       end      as Comments,
+      'Send' as Send_txt,
+//      concat('https://wa.me/918754422319','') as Whatsapp,
       //    _association_name // Make association public
       _paxDet,
       _plaAct

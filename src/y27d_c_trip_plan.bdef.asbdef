@@ -16,6 +16,7 @@ define behavior for Y27D_C_TRIP_PLAN alias plan_details
   use action Prepare;
   use action Confirmed;
   use action YetToConfirm;
+  use action SendMail;
 }
 
 define behavior for Y27D_C_TRIP_PAX alias Pax_details

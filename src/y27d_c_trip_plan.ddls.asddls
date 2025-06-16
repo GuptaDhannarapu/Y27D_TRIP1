@@ -24,10 +24,15 @@ define root view entity Y27D_C_TRIP_PLAN
           Status,
           Created_by,
           Comments,
+          Send_txt,
+//          Whatsapp,
           Status_msg,
           @ObjectModel.virtualElementCalculatedBy: 'ABAP:Y27D_CL_CALCULATE'
           @EndUserText.label: 'Total Pax'
   virtual TotalPax1 : abap.numc(3),
+          @ObjectModel.virtualElementCalculatedBy: 'ABAP:Y27D_CL_WHATSAPP'
+          @EndUserText.label: 'Whats App'
+  virtual WhatsApp  : abap.string(1000),
           _paxDet : redirected to composition child Y27D_C_TRIP_PAX,
           _plaAct : redirected to composition child Y27D_C_TRIP_ACT
 }
